@@ -1,10 +1,14 @@
 {% load static %}
+{% load i18n %}
 <!doctype html>
+{% translate "This website uses cookies to ensure correct functioning. If you continue to use this website, you agree to this." as cookie_message %}
+{% translate "leap in time hiring" as the_title %}
+{% translate "Save the following token if you need to resume this process even after a long time" as resume_explention %}
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>leap in time hiring</title>
+        <title>{{ the_title }}</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -21,23 +25,27 @@
         <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
-
         <div id="cookie-message">
             <p>
-                Diese Webseite verwendet Cookies um eine korrekte Funktion sicherzustellen. Wenn Sie diese Webseite weiter verwenden, zeigen sie sich damit einverstanden.
+                {{ cookie_message }}
             </p>
         </div>
         <div class="baseplate">
         <div class="row header">
             <div class="col-8 col-m-8 notpadd">
-                <h1 style="margin: 0;">leap in time</h1>
+                <h1 style="margin: 0;">{{ the_title }}</h1>
             </div>
             <!--div class="col-4 col-m-4 langselect notpadd">
                 <img alt="langauge selector" src="{% static 'img/de_DE.png' %}" onclick="switch_lang('de');"/>
                 <img alt="langauge selector" src="{% static 'img/en_EN.png' %}" onclick="switch_lang('en');"/>
             </div-->
         </div>
-
+        {% if res_token %}
+        <div class="row">
+            <p class="col-12"><b>{{ resume_explention }}</b></p>
+            <h2 class="col-12">{{ res_token }}</h2>
+        </div>
+        {% endif %}
         {% block pagecontent %}
         {% endblock %}
         <script src="{% static 'js/vendor/modernizr-3.11.2.min.js' %}"></script>

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block pagecontent %}
+
+{% translate "Welcome to our hiring process!" as the_greeting %}
+{% translate "Explanation" as the_explanation %}
+{% translate "Already have a token?" as the_resume %}
+{% translate "If you don't have a token, please start from here!" as the_fresh %}
+
+<div class="row">
+    <div class="col-12">
+        <h2>LOL</h2>
+        <p>{{ the_explanation }}</p>
+        <form action="/basic/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+<br>
+{% endblock %}

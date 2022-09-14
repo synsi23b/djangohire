@@ -6,6 +6,7 @@ Django
 #psycopg2-binary==2.8.4
 #python-dateutil==2.6.1
 python-decouple==3.3
+#django-session-timeout
 #pytz==2019.3
 #qrcode==6.1
 #query-string==2019.4.13

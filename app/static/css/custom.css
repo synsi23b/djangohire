@@ -1,0 +1,629 @@
+* {
+    box-sizing: border-box;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+.js_enabled #cookie-message {
+    display: none;
+}
+
+.langselect {
+    text-align: right;
+}
+
+.langselect img{
+    /* 1st set of icons. Rotate them 360deg onmouseover and out */
+    -moz-transition: all 0.8s ease-in-out;
+    -webkit-transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s ease-in-out;
+    -ms-transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease-in-out;
+     /* margin-top:4px; */
+    padding:0px 5px;
+}
+
+.langselect img:hover{
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+
+.baseplate {
+    background-color: #ffffff;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    color: #666666;
+    max-width: 960px;
+    min-width: 150px;
+    margin: auto;
+    border-radius: 15px;
+    background: url(/static/img/lit_bg_float.png) fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 0%;
+}
+
+.baseplateinternal {
+    background-color: #ffffff;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    color: #666666;
+    max-width: 1900px;
+    min-width: 150px;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.header {
+    background-color: #2B66A7;
+    background: url(/static/img/lit_header_bar.png);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #FFFFFF;
+    border-radius: 15px;
+    padding-left: 15px;
+}
+
+.formupdate {
+    background-color: #2B66A7;
+    color: #FFFFFF;
+    border-radius: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.title {
+    margin: 0;
+    padding: 1em 0 1em 1em;
+}
+
+.headline {
+    font-size: 170%;
+}
+
+.descriptor {
+    font-size: 110%;
+    width: 100%;
+}
+
+.hiddendesc {
+    visibility: hidden;
+}
+
+.hidden_q {
+    display: none;
+}
+
+.question {
+    font-size: 110%;
+}
+
+select {
+    width: 100%;
+    border: 2px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 110%;
+}
+
+input[type=text], [type=number] {
+    width: 100%;
+    border: 2px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 110%;
+}
+
+input[disabled] {
+    pointer-events:none;
+}
+
+textarea {
+    width: 100%;
+    border: 2px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 110%;
+}
+
+/* The container */
+
+.radiocontainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+
+.radiocontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+
+.radiocheckmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+
+.radiocontainer:hover input~.radiocheckmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+
+.radiocontainer input:checked~.radiocheckmark {
+    background-color: #2B66A7;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+
+.radiocheckmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+
+.radiocontainer input:checked~.radiocheckmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+
+.radiocontainer .radiocheckmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+/* The container */
+
+.checkcontainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+
+.checkcontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border: solid #2B66A7;
+    border-width: 2px;
+}
+
+/* On mouse-over, add a grey background color */
+
+.checkcontainer:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+
+.checkcontainer input:checked~.checkmark {
+    background-color: #2B66A7;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+
+.checkcontainer input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+
+.checkcontainer .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.stars {
+    display:inline-block;
+   }
+   
+.stars input {
+    display: none;
+}
+   
+.stars label {
+    float: right;
+    text-align: center;
+    width:20.0%;
+    padding: 2px;
+    font-size: 24px;
+    color: #444;
+    transition: all .2s;
+}
+   
+.stars label:before {
+    color:#ccc;
+    content: '\2605';
+}
+   
+.stars input:checked ~ label:before {
+    color: #2B66A7;
+    transition: all .25s;
+}
+   
+.stars label:hover {
+    color:#ccc;
+    transform: scale(1.3);
+}
+
+.slidecontainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #2B66A7;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #2B66A7;
+    cursor: pointer;
+}
+
+.result_slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 30px;
+    outline: none;
+    opacity: 0.7;
+    border-radius: 5px;
+}
+
+.result_slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 45px;
+    background: rgb(61, 61, 61);
+}
+
+.result_slider::-moz-range-thumb {
+    width: 15px;
+    height: 45px;
+    background: rgb(61, 61, 61);
+}
+
+.result_bad {
+    background: rgb(235, 21, 64);
+}
+
+.result_medium {
+    background: rgb(241, 185, 42);
+}
+
+.result_good {
+    background: rgb(8, 214, 8);
+}
+
+
+.rate_subquest_cont {
+    background-color: lightgray;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.rate_subquestion {
+    font-size: 130%;
+}
+
+.notpadd {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.buttonstyle {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 1px;
+    color: #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #2B66A7;
+    font-size: 1.5em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: normal;
+    border: 2px solid #bdc3c7;
+    -webkit-transition: border-color 0.6s;
+    transition: border-color 0.6s;
+    border-radius: 6px;
+}
+
+.img-special {
+    padding: 0px 15px 0px 0px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.img-result {
+    width: 100%;
+    height: auto;
+}
+
+.img-qr {
+    width: 100%;
+    height: auto;
+}
+
+.center {
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.notspace {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.tooltip-icon {
+    height: 16px;
+    width: 16px;
+}
+
+.quest_img_holder {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+/* For mobile phones: */
+
+[class*="col-"] {
+    width: 100%;
+}
+
+@media only screen and (min-width: 100px) {
+    .hide_on_m {
+        display: none;
+    }
+    .show_on_m {
+        display: block;
+    }
+    /* For tablets: */
+    .likerts-m-hid {
+        visibility: hidden;
+    }
+    .likerts-m {
+        text-align: center;
+        font-size: 90%;
+    }
+    .tooltip-m {
+        display: block;
+    }
+    .tooltip-icon-m {
+        display: none;
+    }
+    .likerts-d-only {
+        display: none;
+    }
+    .col-m-1 {
+        width: 8.33%;
+    }
+    .col-m-lik {
+        width: 14.28%;
+    }
+    .col-m-lik-tex {
+        width: 20%;
+        padding: 0 0 0 15px;
+    }
+    .col-m-lik-hid {
+        width: 10%;
+        visibility: hidden;
+        padding: 0px;
+        height: 1px;
+    }
+    .col-m-2 {
+        width: 16.66%;
+    }
+    .col-m-3 {
+        width: 25%;
+    }
+    .col-m-4 {
+        width: 33.33%;
+    }
+    .col-m-5 {
+        width: 41.66%;
+    }
+    .col-m-6 {
+        width: 50%;
+    }
+    .col-m-7 {
+        width: 58.33%;
+    }
+    .col-m-8 {
+        width: 66.66%;
+    }
+    .col-m-9 {
+        width: 75%;
+    }
+    .col-m-10 {
+        width: 83.33%;
+    }
+    .col-m-11 {
+        width: 91.66%;
+    }
+    .col-m-12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .hide_on_d {
+        display: none;
+    }
+    .show_on_d {
+        display: block;
+    }
+    .manu_img_push {
+        display: block;
+        height: 120px;
+    }
+    .likerts-m-hide {
+        display: none;
+    }
+    .tooltip {
+        display: none;
+    }
+    .tooltip-icon {
+        height: 16px;
+        width: 16px;
+        display: block;
+    }
+    /* For desktop: */
+    .col-1 {
+        width: 8.33%;
+    }
+    .col-1-5 {
+        width: 12.5%;
+    }
+    .col-2 {
+        width: 16.66%;
+    }
+    .col-3 {
+        width: 25%;
+    }
+    .col-4 {
+        width: 33.33%;
+    }
+    .col-5 {
+        width: 41.66%;
+    }
+    .col-6 {
+        width: 50%;
+    }
+    .col-7 {
+        width: 58.33%;
+    }
+    .col-8 {
+        width: 66.66%;
+    }
+    .col-9 {
+        width: 75%;
+    }
+    .col-10 {
+        width: 83.33%;
+    }
+    .col-11 {
+        width: 91.66%;
+    }
+    .col-12 {
+        width: 100%;
+    }
+    .col-small {
+        width: 4.5%;
+    }
+    .likerts {
+        text-align: center;
+        font-size: 90%;
+        visibility: visible;
+        padding-top: 20px;
+    }
+    .likerts-rot {
+        text-align: center;
+        font-size: 90%;
+        visibility: visible;
+        padding-top: 20px;
+        transform: rotate(60deg);
+    }
+}

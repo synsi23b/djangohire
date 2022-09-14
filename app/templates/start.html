@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block pagecontent %}
+
+{% translate "Welcome to our hiring process!" as the_greeting %}
+{% translate "Explanation of the process" as the_explanation %}
+{% translate "Submit the resume token" as the_resume %}
+{% translate "If you don't have a token, please start from here!" as the_fresh %}
+
+<div class="row">
+    <div class="col-4">
+        <img class="img-special" src="{% static 'img/tud_logo.png' %}" />
+    </div>
+    <div class="col-4">
+        <img class="img-special" src="{% static 'img/mup_logo.png' %}" />
+    </div>
+    <div class="col-4">
+        <img class="img-special" src="{% static 'img/lit_logo.png' %}" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <h2>{{ the_greeting }}</h2>
+        <p>{{ the_explanation }}</p>
+        <br>
+        <form action="/resume/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="{{ the_resume }}">
+        </form>
+        <br>
+        <div style="text-align: center;">
+            <form action="/basic/" method="get">
+                <input type="submit" value="{{ the_fresh }}">
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}
