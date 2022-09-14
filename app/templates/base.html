@@ -1,0 +1,55 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>leap in time hiring</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="manifest" href="{% static 'site.webmanifest' %}">
+        <link rel="apple-touch-icon" href="{% static 'icon.png' %}">
+        <link rel="icon" type="image/png" href="{% static 'icon.png' %}">
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <script src="{% static 'js/main.js' %}"></script>
+    </head>
+    <body style="background-color:#EBEBEB">
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <div id="cookie-message">
+            <p>
+                Diese Webseite verwendet Cookies um eine korrekte Funktion sicherzustellen. Wenn Sie diese Webseite weiter verwenden, zeigen sie sich damit einverstanden.
+            </p>
+        </div>
+        <div class="baseplate">
+        <div class="row header">
+            <div class="col-8 col-m-8 notpadd">
+                <h1 style="margin: 0;">leap in time</h1>
+            </div>
+            <!--div class="col-4 col-m-4 langselect notpadd">
+                <img alt="langauge selector" src="{% static 'img/de_DE.png' %}" onclick="switch_lang('de');"/>
+                <img alt="langauge selector" src="{% static 'img/en_EN.png' %}" onclick="switch_lang('en');"/>
+            </div-->
+        </div>
+
+        {% block pagecontent %}
+        {% endblock %}
+        <script src="{% static 'js/vendor/modernizr-3.11.2.min.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write("<script src=\"{% static 'js/vendor/jquery-3.2.1.min.js' %}\"><\/script>")</script>
+        <script src="{% static 'js/plugins.js' %}"></script>
+        <script src="{% static 'js/cookie-message.js' %}"></script>
+        </div>
+        <br>
+    </body>
+    <script>
+        // Detect JS support
+        document.body.className = document.body.className + " js_enabled";
+    </script>
+</html>
