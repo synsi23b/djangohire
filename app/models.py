@@ -11,6 +11,7 @@ SEX_CHOICES = [
 
 class Applicant(models.Model):
     resume = models.UUIDField()
+    step = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     firstname = models.CharField("First Name", max_length=127)
     lastname = models.CharField("Last Name", max_length=127)

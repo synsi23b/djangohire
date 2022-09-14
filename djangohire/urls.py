@@ -21,6 +21,6 @@ urlpatterns = [
     path('adm/', admin.site.urls),
     path('', app.views.index, name='index'),
     path('resume/', app.views.resume, name='resume'),
-    path('basic/', app.views.basic, name='basic'),
+    path('step/', app.views.stepper, name='stepper'),
     #re_path(r'^$', app.views.index, name='index'),
 ]

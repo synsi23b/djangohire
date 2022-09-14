@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block pagecontent %}
+
+{% translate "You completed the process, we will get in contact with you soon!" as the_greeting %}
+{% translate "Here you can see the details of your application once more" as the_explanation %}
+
+<div class="row">
+    <div class="col-12">
+        <h2>{{ the_greeting }}</h2>
+        <p>{{ the_explanation }}</p>
+    </div>
+</div>
+<br>
+{% endblock %}

@@ -31,7 +31,9 @@
         </form>
         <br>
         <div style="text-align: center;">
-            <form action="/basic/" method="get">
+            <form action="/resume/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="fresh" value="yes" />
                 <input type="submit" value="{{ the_fresh }}">
             </form>
         </div>

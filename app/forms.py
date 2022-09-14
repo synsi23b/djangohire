@@ -9,4 +9,4 @@ class UuidForm(forms.Form):
 class ApplicantForm(forms.ModelForm):
     class Meta:
         model = Applicant
-        exclude = ["resume"]
+        exclude = ["resume", "step"]
