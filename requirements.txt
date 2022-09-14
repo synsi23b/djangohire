@@ -1,0 +1,24 @@
+Django
+#dj-database-url
+#get
+#gunicorn
+#Pillow
+#psycopg2-binary==2.8.4
+#python-dateutil==2.6.1
+python-decouple==3.3
+#pytz==2019.3
+#qrcode==6.1
+#query-string==2019.4.13
+#request==2019.4.13
+#six==1.14.0
+#typed-ast==1.4.1
+#urllib3==1.25.8
+#whitenoise==3.3.1
+#wrapt==1.11.2
+#XlsxWriter==1.2.7
+#python-slugify==4.0.0
+#mailjet_rest==1.3.3
+#django_cron
+#pymongo
+# to resolve mongo db uris
+#dnspython%
