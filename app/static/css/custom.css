@@ -79,6 +79,16 @@
     padding-left: 15px;
 }
 
+.resumetok {
+    background-color: #bbd34b;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border-radius: 15px;
+    padding-left: 15px;
+}
+
 .formupdate {
     background-color: #2B66A7;
     color: #FFFFFF;
@@ -86,6 +96,17 @@
     padding-left: 15px;
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.errorlist {
+    background-color: #f88888;
+    color: #000;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    border-radius: 15px;
+    padding-left: 15px;
 }
 
 .title {

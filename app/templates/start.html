@@ -27,14 +27,14 @@
         <form action="/resume/" method="post">
             {% csrf_token %}
             {{ form }}
-            <input type="submit" value="{{ the_resume }}">
+            <input class="center buttonstyle" type="submit" value="{{ the_resume }}">
         </form>
         <br>
         <div style="text-align: center;">
             <form action="/resume/" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="fresh" value="yes" />
-                <input type="submit" value="{{ the_fresh }}">
+                <input class="center buttonstyle" type="submit" value="{{ the_fresh }}">
             </form>
         </div>
     </div>

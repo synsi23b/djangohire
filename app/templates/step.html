@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block pagecontent %}
+
+<div class="row">
+    <div class="col-12">
+        {% if greeting %}
+        <h2>{{ greeting }}</h2>
+        {% endif %}
+        {% if explenation %}
+        <p>{{ explanation }}</p>
+        {% endif %}
+    </div>
+</div>
+{% if form %}
+<form action="/step/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <div class="row">
+        <input class="center buttonstyle"  type="submit" value="{{ submit }}">
+    </div>
+</form>
+{% endif %}
+<br>
+{% endblock %}

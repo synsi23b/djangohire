@@ -2,9 +2,12 @@ from uuid import uuid4
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.translation import gettext as _
 
 from .forms import UuidForm, ApplicantForm
 from .models import Applicant
+
+
 
 
 def index(request):
@@ -12,7 +15,6 @@ def index(request):
     res = request.session.get("resume", None)
     if res:
         form=UuidForm(initial={"resume":res})
-        del request.session["resume"]
     else:
         form=UuidForm()
     return render(request, 'start.html', context={"form":form})
@@ -34,7 +36,7 @@ def resume(request):
                 except ObjectDoesNotExist:
                     request.session["step"] = 0
             else:
-                return HttpResponse("Error: bad token")
+                return HttpResponse(_("Error: bad token, try again or start new"))
         # overwrite method 
         request.method = "GET"
         return stepper(request)
@@ -51,19 +53,22 @@ def resume(request):
 def stepper(request):
     step = request.session["step"]
     resu = request.session["resume"]
-    try:
-        applicant = Applicant.objects.get(resume__exact=resu)
-    except ObjectDoesNotExist:
-        applicant = None
-    newstep, tmpl, ctx = STEPS[step](request, step)
-    if newstep != step and applicant is not None:
+    newstep, ctx = STEPS[step](request, step)
+    if newstep != step:
         request.session["step"] = newstep
+        applicant = Applicant.objects.get(resume__exact=resu)
         applicant.step = newstep
         applicant.save()
-    return render(request, tmpl, context=ctx)
+    ctx["res_token"] = resu
+    ctx["step"] = newstep
+    if not "submit" in ctx:
+        ctx["submit"] = _("Submit")
+    return render(request, "step.html", context=ctx)
 
 
 def basic(request, step):
+    greet = _("""First, please provide some basic information about yourself.""")
+    #expl = _("""Here you can see your transmitted data: (NOT YET IMPLEMENTED)""")
     if request.method == 'POST':
         form = ApplicantForm(request.POST)
         if form.is_valid():
@@ -82,10 +87,12 @@ def basic(request, step):
             form = ApplicantForm(instance=applicant)
         else:
             form = ApplicantForm()
-    return step, 'basic.html', {"form": form}
+    return step, {"form": form, "greeting": greet, "injected_js": "form_attach_toggle_nationality();"}
 
 
 def finished(request, step):
-    return step, 'finished.html', {}
+    greet = _("""You are done filling out, you will here from us soon!""")
+    expl = _("""Here you can see your transmitted data: (NOT YET IMPLEMENTED)""")
+    return step, {"greeting": greet, "explenation": expl }
 
 STEPS = [basic, finished]

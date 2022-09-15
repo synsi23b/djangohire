@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-12">{{ form.non_field_errors }}</div>
+</div>
+{% for field in form %}
+<div class="row">
+    <div class="col-12" id="{{ field.auto_id }}_col">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+    </div>
+</div>
+{% endfor %}

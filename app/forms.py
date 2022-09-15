@@ -7,6 +7,7 @@ class UuidForm(forms.Form):
 
 
 class ApplicantForm(forms.ModelForm):
+    template_name = "form_basic.html"
     class Meta:
         model = Applicant
         exclude = ["resume", "step"]
