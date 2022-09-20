@@ -2,7 +2,23 @@
 {% load static %}
 {% load i18n %}
 {% block pagecontent %}
-
+{% translate "Current step: " as curstep %}
+<div class="row">
+    <div class="col-12">
+        {% blocktranslate with step_cur=step step_tot=steps_verbose|length %}
+        Your current step is {{ step_cur }} of {{ step_tot }} total steps
+        {% endblocktranslate %}
+    </div>
+</div>
+<div class="row">
+    {% for stepv in steps_verbose %}
+        {% if forloop.counter < step %}<div class="col-2 stepstyle stepdone">{% endif %}
+        {% if forloop.counter == step %}<div class="col-2 stepstyle stepcur">{% endif %}
+        {% if forloop.counter > step %}<div class="col-2 stepstyle">{% endif %}
+        {{ forloop.counter }}. {{ stepv }}</div>
+        {% if forloop.counter == 6 %}</div><div class="row">{% endif %}
+    {% endfor %}
+</div>
 <div class="row">
     <div class="col-12">
         {% if greeting %}

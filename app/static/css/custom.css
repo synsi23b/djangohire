@@ -448,6 +448,33 @@ textarea {
     border-radius: 6px;
 }
 
+.stepstyle {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 1px;
+    color: #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #2B66A7;
+    font-size: 1em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: normal;
+    border: 2px solid #bdc3c7;
+    -webkit-transition: border-color 0.6s;
+    transition: border-color 0.6s;
+    border-radius: 6px;
+}
+
+.stepdone {
+    background-color: #2ba76d;
+}
+
+.stepcur {
+    background-color: #2ba3a7;
+}
+
 .img-special {
     padding: 0px 15px 0px 0px;
     max-width: 100%;
