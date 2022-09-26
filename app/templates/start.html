@@ -4,9 +4,9 @@
 {% block pagecontent %}
 
 {% translate "Welcome to our hiring process!" as the_greeting %}
-{% translate "Explanation of the process" as the_explanation %}
+{% translate "On the following pages you will have to answer some basic questions about yourself, your tax and social security numbers. You can stop this process at any time and come back to it using the resume token that is generated for you on the next page, in case your cookie got lost. If you want to start fresh, you can ignore the token and just use button for starting a new application.'" as the_explanation %}
 {% translate "Submit the resume token" as the_resume %}
-{% translate "If you don't have a token, please start from here!" as the_fresh %}
+{% translate "For a new application, please start from here!" as the_fresh %}
 
 <div class="row">
     <div class="col-4">
@@ -24,12 +24,6 @@
         <h2>{{ the_greeting }}</h2>
         <p>{{ the_explanation }}</p>
         <br>
-        <form action="/resume/" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input class="center buttonstyle" type="submit" value="{{ the_resume }}">
-        </form>
-        <br>
         <div style="text-align: center;">
             <form action="/resume/" method="post">
                 {% csrf_token %}
@@ -37,6 +31,12 @@
                 <input class="center buttonstyle" type="submit" value="{{ the_fresh }}">
             </form>
         </div>
+        <br>
+        <form action="/resume/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input class="center buttonstyle" type="submit" value="{{ the_resume }}">
+        </form>
     </div>
 </div>
 <br>

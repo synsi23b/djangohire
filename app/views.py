@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext as _
-
+from pathlib import Path
 from .forms import ChildrenProofForm, IncomeTaxForm, JobDatesForm, JobOutlineForm, PermitForm, SocialSecForm, UuidForm, ApplicantForm
 from .models import Applicant
 
@@ -50,9 +50,20 @@ def resume(request):
     return index(request)
 
 
+def _jump(request, resu):
+    if request.method == 'POST' and "jump" in request.POST:
+        applicant = Applicant.objects.get(resume__exact=resu)
+        jump = int(request.POST["jump"])
+        if jump <= applicant.step:
+            request.session["step"] = jump
+            request.method = "GET"
+
+
 def stepper(request):
-    step = request.session["step"]
     resu = request.session["resume"]
+    _jump(request, resu)
+    step = request.session["step"]
+    
     ctx = STEPS[step-1](request)
     newstep = request.session["step"]
     if newstep > step:
@@ -69,9 +80,19 @@ def stepper(request):
 
 def _basic_form_process(request, form_class, on_valid, greeting, explenation="", js=""):
     if request.method == 'POST':
-        form = form_class(request.POST)
+        if "file" in form_class.base_fields:
+            form = form_class(request.POST, request.FILES)
+        else:
+            form = form_class(request.POST)
         if form.is_valid() and on_valid(request, form):
-            form.instance.resume = request.session["resume"]
+            resu = request.session["resume"]
+            form.instance.resume = resu
+            try:
+                obj = type(form.instance).objects.get(resume__exact=resu)
+                form.instance.pk = obj.pk
+                form.instance.created_at = obj.created_at
+            except:
+                pass
             form.save()
             request.method = "GET"
             step = request.session["step"]
@@ -93,6 +114,16 @@ def _get_resume_obj_form(request, form_class):
     return form
 
 
+def _store_file(request):
+    files = request.FILES.getlist('file')
+    folder = Path(f"uploads/{request.session['resume']}")
+    folder.mkdir(parents=True, exist_ok=True)
+    for f in files:
+        with open(str(folder / f.name), 'wb+') as dest:
+            for chunk in f.chunks():
+                dest.write(chunk)
+
+
 def basic(request):
     greet = _("""First, please provide some basic information about yourself.""")
     #expl = _("""Here you can see your transmitted data: (NOT YET IMPLEMENTED)""")
@@ -108,9 +139,14 @@ def basic(request):
 
 
 def permit(request):
+    applicant = Applicant.objects.get(resume__exact=request.session["resume"])
+    if applicant.nationality != "OTH":
+        request.session["step"] += 1
+        return STEPS[request.session["step"]-1](request)
     greet = _("""As your nationality is not within the EGR or Swiss, please provide your working permit.""")
     #expl = _("""Here you can see your transmitted data: (NOT YET IMPLEMENTED)""")
     def _valid(req, frm):
+        _store_file(req)
         req.session["step"] += 1
         return True
     ctx = _basic_form_process(request, PermitForm, _valid, greet)
@@ -160,6 +196,7 @@ def incometax(request):
 def children(request):
     greet = _("""Please submit a file proofing your children.""")
     def _valid(req, frm):
+        _store_file(req)
         req.session["step"] += 1
         return True
     ctx = _basic_form_process(request, ChildrenProofForm , _valid, greet)

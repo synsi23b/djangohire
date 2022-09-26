@@ -64,6 +64,7 @@ class Applicant(models.Model):
 class WorkPermit(models.Model):
     resume = models.UUIDField()
     created_at = models.DateTimeField(auto_now_add=True)
+    #title = models.CharField(max_length=127)
     file = models.FileField()
 
 
@@ -129,4 +130,5 @@ class IncomeTax(models.Model):
 class ChildrenProof(models.Model):
     resume = models.UUIDField()
     created_at = models.DateTimeField(auto_now_add=True)
+    #title = models.CharField(max_length=127)
     file = models.FileField()

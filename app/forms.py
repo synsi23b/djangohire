@@ -18,6 +18,9 @@ class PermitForm(forms.ModelForm):
     class Meta:
         model = WorkPermit
         exclude = ["resume",]
+        widget = {
+            "file" : forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+        }
 
 
 class JobOutlineForm(forms.ModelForm):
@@ -53,4 +56,6 @@ class ChildrenProofForm(forms.ModelForm):
     class Meta:
         model = ChildrenProof
         exclude = ["resume",]
-
+        widget = {
+            "file" : forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+        }

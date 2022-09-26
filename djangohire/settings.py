@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-=6+jd8vcw5^_0-%#bpy#u$@x_qbcq=ium!sfo_x(844qbm#rm_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "hiring.leap-in-time.de"]
 
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1", 'https://hiring.leap-in-time.de']
 
 # Application definition
 
@@ -116,12 +117,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    BASE_DIR / 'app/static',
+    #BASE_DIR / 'static',
 )
 
 # Default primary key field type

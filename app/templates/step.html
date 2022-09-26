@@ -6,16 +6,21 @@
 <div class="row">
     <div class="col-12">
         {% blocktranslate with step_cur=step step_tot=steps_verbose|length %}
-        Your current step is {{ step_cur }} of {{ step_tot }} total steps
+        Your currently at step{{ step_cur }} of {{ step_tot }} total steps.
         {% endblocktranslate %}
     </div>
 </div>
 <div class="row">
     {% for stepv in steps_verbose %}
-        {% if forloop.counter < step %}<div class="col-2 stepstyle stepdone">{% endif %}
-        {% if forloop.counter == step %}<div class="col-2 stepstyle stepcur">{% endif %}
-        {% if forloop.counter > step %}<div class="col-2 stepstyle">{% endif %}
-        {{ forloop.counter }}. {{ stepv }}</div>
+        <div class="col-2 lowpad">
+            <form method="post" action="/step/" >
+            {% csrf_token %}
+            <input type="hidden" name="jump" value="{{ forloop.counter }}" />
+            {% if forloop.counter < step %}<input type="submit" class="stepstyle stepdone" value="{{ forloop.counter }}. {{ stepv }}" />{% endif %}
+            {% if forloop.counter == step %}<input type="submit" class="stepstyle stepcur" value="{{ forloop.counter }}. {{ stepv }}" />{% endif %}
+            {% if forloop.counter > step %}<input type="submit" class="stepstyle" value="{{ forloop.counter }}. {{ stepv }}" />{% endif %}
+            </form>
+        </div>
         {% if forloop.counter == 6 %}</div><div class="row">{% endif %}
     {% endfor %}
 </div>
@@ -30,7 +35,11 @@
     </div>
 </div>
 {% if form %}
-<form action="/step/" method="post">
+{% if form.is_multipart %}
+    <form enctype="multipart/form-data" method="post" action="/step/" >
+{% else %}
+    <form method="post" action="/step/" >
+{% endif %}
     {% csrf_token %}
     {{ form }}
     <div class="row">
