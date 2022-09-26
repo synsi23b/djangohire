@@ -10,6 +10,13 @@
         {% endblocktranslate %}
     </div>
 </div>
+{% if jump_warn %}
+<div class="row">
+    <div class="col-12">
+        <h2>{{ jump_warn }}</h2>
+    </div>
+</div>
+{% endif %}
 <div class="row">
     {% for stepv in steps_verbose %}
         <div class="col-2 lowpad">

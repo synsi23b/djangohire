@@ -52,19 +52,26 @@ def resume(request):
 
 def _jump(request, resu):
     if request.method == 'POST' and "jump" in request.POST:
-        applicant = Applicant.objects.get(resume__exact=resu)
         jump = int(request.POST["jump"])
-        if jump <= applicant.step:
-            request.session["step"] = jump
+        try:
+            applicant = Applicant.objects.get(resume__exact=resu)
+            if jump <= applicant.step:
+                request.session["step"] = jump
+                request.method = "GET"
+            else:
+                return _("Could not switch to step %d! You need to complete the steps in order." % jump)
+        except:
             request.method = "GET"
+            return _("Could not switch to step %d! You need to complete the steps in order." % jump)
 
 
 def stepper(request):
     resu = request.session["resume"]
-    _jump(request, resu)
+    jump_warn = _jump(request, resu)
     step = request.session["step"]
     
     ctx = STEPS[step-1](request)
+    ctx["jump_warn"] = jump_warn
     newstep = request.session["step"]
     if newstep > step:
         applicant = Applicant.objects.get(resume__exact=resu)
