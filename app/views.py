@@ -11,7 +11,7 @@ from .models import Applicant
 
 
 def index(request):
-    request.session.set_test_cookie()
+    #request.session.set_test_cookie()
     res = request.session.get("resume", None)
     if res:
         form=UuidForm(initial={"resume":res})
@@ -66,7 +66,9 @@ def _jump(request, resu):
 
 
 def stepper(request):
-    resu = request.session["resume"]
+    resu = request.session.get("resume", None)
+    if resu is None:
+        return index(request)
     jump_warn = _jump(request, resu)
     step = request.session["step"]
     

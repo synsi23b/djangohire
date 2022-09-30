@@ -4,7 +4,8 @@
 {% block pagecontent %}
 
 {% translate "Welcome to our hiring process!" as the_greeting %}
-{% translate "On the following pages you will have to answer some basic questions about yourself, your tax and social security numbers. You can stop this process at any time and come back to it using the resume token that is generated for you on the next page, in case your cookie got lost. If you want to start fresh, you can ignore the token and just use button for starting a new application.'" as the_explanation %}
+{% translate "On the following pages you will have to answer some basic questions about yourself, your tax and social security numbers. You can stop this process at any time and come back to it using the resume token that is generated for you on the next page, in case your cookie got lost. If you want to start fresh, you can ignore the token and just use button for starting a new application." as the_explanation %}
+{% translate "If you have disabled cookies, this website won't work. We don't use them to track you for any monetization whatsoever, but we need to remember you between in between steps." as cookie_please %}
 {% translate "Submit the resume token" as the_resume %}
 {% translate "For a new application, please start from here!" as the_fresh %}
 
@@ -23,6 +24,7 @@
     <div class="col-12">
         <h2>{{ the_greeting }}</h2>
         <p>{{ the_explanation }}</p>
+        <h3>{{ cookie_please }}</h3>
         <br>
         <div style="text-align: center;">
             <form action="/resume/" method="post">
